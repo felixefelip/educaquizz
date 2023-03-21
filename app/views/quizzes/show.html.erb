@@ -3,8 +3,22 @@
 <%= render @quiz %>
 
 <div>
-  <%= link_to "Edit this quiz", edit_quiz_path(@quiz) %> |
+  <%= link_to "Editar quiz", edit_quiz_path(@quiz) %> |
+  <%= link_to "Adicionar questão", new_quiz_question_path(@quiz) %> |
   <%= link_to "Back to quizzes", quizzes_path %>
 
   <%= button_to "Destroy this quiz", @quiz, method: :delete %>
 </div>
+
+<h1>Questions</h1>
+
+<div id="questions">
+  <% @quiz.questions.each do |question| %>
+    <%= render question %>
+    <p>
+      <%= link_to "Show this question", quiz_questions_path(question) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New question", new_quiz_question_path(@quiz) %>

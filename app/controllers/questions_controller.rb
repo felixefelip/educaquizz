@@ -23,27 +23,18 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to question_url(@question), notice: "Question was successfully created." }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.save
+      redirect_to quiz_questions_url(@question), notice: "Question was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /questions/1 or /questions/1.json
   def update
-    respond_to do |format|
-      if @question.update(question_params)
-        format.html { redirect_to question_url(@question), notice: "Question was successfully updated." }
-        format.json { render :show, status: :ok, location: @question }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
+    if @question.update(question_params)
+      redirect_to quiz_questions_url(@question), notice: "Question was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -51,20 +42,18 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to questions_url, notice: "Question was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def question_params
-      params.require(:question).permit(:description, :difficulty, :quiz_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def question_params
+    params.require(:question).permit(:description, :difficulty, :quiz_id)
+  end
 end
