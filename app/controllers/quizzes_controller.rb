@@ -43,7 +43,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
 
-    format.html { redirect_to quizzes_url, notice: "Quiz was successfully destroyed." }
+    redirect_to quizzes_url, notice: "Quiz was successfully destroyed."
   end
 
   private
