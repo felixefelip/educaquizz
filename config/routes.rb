@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :questions
   end
 
+  resources :questions, only: :show
+
   devise_for :users
 
   devise_scope :user do

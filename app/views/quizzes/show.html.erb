@@ -15,9 +15,6 @@
 <div id="questions">
   <% @quiz.questions.each do |question| %>
     <%= render question %>
-    <p>
-      <%= link_to "Show this question", quiz_questions_path(question) %>
-    </p>
   <% end %>
 </div>
 
