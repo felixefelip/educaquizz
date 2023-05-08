@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_031808) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_000248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,7 +24,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_031808) do
     t.string "alternative2"
     t.string "alternative3"
     t.string "alternative4"
+    t.integer "correct_answer", null: false
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quiz_realization_answers", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.bigint "quiz_realization_id", null: false
+    t.integer "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_quiz_realization_answers_on_question_id"
+    t.index ["quiz_realization_id"], name: "index_quiz_realization_answers_on_quiz_realization_id"
+  end
+
+  create_table "quiz_realizations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "quiz_id", null: false
+    t.datetime "finished_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_realizations_on_quiz_id"
+    t.index ["user_id"], name: "index_quiz_realizations_on_user_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -52,4 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_031808) do
   end
 
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_realization_answers", "questions"
+  add_foreign_key "quiz_realization_answers", "quiz_realizations"
+  add_foreign_key "quiz_realizations", "quizzes"
+  add_foreign_key "quiz_realizations", "users"
 end
