@@ -1,0 +1,15 @@
+<%= form_with(model: quiz_realization_answer, url: question_quiz_realization_quiz_realization_answers_path) do |form| %>
+  <% if quiz_realization_answer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(quiz_realization_answer.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% quiz_realization_answer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  Teste
+<% end %>

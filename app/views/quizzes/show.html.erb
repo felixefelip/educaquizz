@@ -4,7 +4,8 @@
 
 <div>
   <%= link_to "Editar quiz", edit_quiz_path(@quiz) %> |
-  <%= link_to "Adicionar questão", new_quiz_question_path(@quiz) %> |
+  <%= link_to "Adicionar questão", new_quiz_question_path(@quiz) %>
+  <%= link_to "Iniciar quiz", quiz_quiz_realizations_path(@quiz), data: { "turbo-method": :post } %> |
   <%= link_to "Back to quizzes", quizzes_path %>
 
   <%= button_to "Destroy this quiz", @quiz, method: :delete %>

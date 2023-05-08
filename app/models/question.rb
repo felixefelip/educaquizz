@@ -20,8 +20,8 @@ class Question < ApplicationRecord
 
   validates :description, presence: true
   validates :difficulty, numericality: { greater_than_or_equal_to: 1,
-                                        less_than_or_equal_to: 3 }
+                                         less_than_or_equal_to: 3 }
 
   validates :correct_answer, numericality: { greater_than_or_equal_to: 1,
-                                            less_than_or_equal_to: 4 }
+                                             less_than_or_equal_to: 4 }
 end
