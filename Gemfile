@@ -74,7 +74,11 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+  gem "rubocop", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
   gem "selenium-webdriver"
-  gem "webdrivers"
   gem "shoulda-matchers", "~> 5.0"
+  gem "webdrivers"
 end
