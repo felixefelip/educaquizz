@@ -3,8 +3,7 @@ class QuizRealizationAnswersController < ApplicationController
   before_action :set_quiz_realization, only: :new
 
   def new
-    @quiz_realization_answer = @quiz_realization
-      .quiz_realization_answers
+    @quiz_realization_answer = @quiz_realization.quiz_realization_answers
       .find_or_initialize_by(question: @question)
   end
 
