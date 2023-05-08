@@ -12,7 +12,9 @@
 class QuizRealizationAnswer < ApplicationRecord
   belongs_to :question
   belongs_to :quiz_realization
+  has_one :quiz, through: :quiz_realization
+  has_many :questions, through: :quiz
 
   validates :answer, numericality: { greater_than_or_equal_to: 0,
-                                    less_than_or_equal_to: 4, allow_nil: true }
+                                     less_than_or_equal_to: 4, allow_nil: true }
 end

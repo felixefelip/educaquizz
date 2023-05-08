@@ -11,5 +11,19 @@
     </div>
   <% end %>
 
-  Teste
+  <% quiz_realization_answer.questions.each.with_index(1) do |question, index| %>
+    <%= link_to index, new_question_quiz_realization_quiz_realization_answer_url(
+                         question_id: question.id,
+                         quiz_realization_id: quiz_realization_answer.quiz_realization_id,
+                       ) %>
+  <% end %>
+
+  <br>
+  <br>
+  <h2><%= quiz_realization_answer.question.description %></h2>
+
+  A <%= quiz_realization_answer.question.alternative1 %><br>
+  B <%= quiz_realization_answer.question.alternative2 %><br>
+  C <%= quiz_realization_answer.question.alternative3 %><br>
+  D <%= quiz_realization_answer.question.alternative4 %><br>
 <% end %>
