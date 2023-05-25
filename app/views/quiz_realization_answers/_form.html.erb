@@ -13,7 +13,7 @@
 
   <% quiz_realization_answer.questions.each.with_index(1) do |question, index| %>
     <%= link_to index, new_question_quiz_realization_quiz_realization_answer_url(
-                         question_id: question.id,
+                         question_id: quiz_realization_answer.question.id,
                          quiz_realization_id: quiz_realization_answer.quiz_realization_id,
                        ) %>
   <% end %>
@@ -22,7 +22,15 @@
   <br>
   <h2><%= quiz_realization_answer.question.description %></h2>
 
-  A <%= quiz_realization_answer.question.alternative1 %><br>
+  <%= link_to "A", question_quiz_realization_quiz_realization_answers_url(
+    answer: 1,
+    question_id: quiz_realization_answer.question.id,
+    quiz_realization_id: quiz_realization_answer.quiz_realization_id),
+    method: :post,
+    data: { confirm: "Tem certeza?", "turbo-method": :post  } %>
+
+  <%= quiz_realization_answer.question.alternative1 %><br>
+
   B <%= quiz_realization_answer.question.alternative2 %><br>
   C <%= quiz_realization_answer.question.alternative3 %><br>
   D <%= quiz_realization_answer.question.alternative4 %><br>
