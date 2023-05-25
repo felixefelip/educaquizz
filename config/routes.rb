@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :quiz_realizations, only: :create
   end
 
+  resources :quiz_realizations, only: :show
+
   resources :questions, only: :show do
     resources :quiz_realizations, only: [] do
       resources :quiz_realization_answers, only: %i[new create]

@@ -12,10 +12,7 @@
   <% end %>
 
   <% quiz_realization_answer.questions.each.with_index(1) do |question, index| %>
-    <%= link_to index, new_question_quiz_realization_quiz_realization_answer_url(
-                         question_id: quiz_realization_answer.question.id,
-                         quiz_realization_id: quiz_realization_answer.quiz_realization_id,
-                       ) %>
+    <%= index %>
   <% end %>
 
   <br>

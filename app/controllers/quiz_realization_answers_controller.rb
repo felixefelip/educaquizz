@@ -11,10 +11,8 @@ class QuizRealizationAnswersController < ApplicationController
     @quiz_realization_answer =
       @quiz_realization.quiz_realization_answers.create!(answer: @answer, question: @question)
 
-    next_question_id = calculate_next_question_id
-
     if next_question_id.nil?
-      redirect_to root_path, notice: "Questão respondida com sucesso. Quiz finalizado!"
+      redirect_to quiz_realization_url(id: @quiz_realization), notice: "Questão respondida com sucesso. Quiz finalizado!"
     else
       redirect_to new_question_quiz_realization_quiz_realization_answer_url(
         question_id: next_question_id,
@@ -23,8 +21,8 @@ class QuizRealizationAnswersController < ApplicationController
     end
   end
 
-  def calculate_next_question_id
-    @quiz_realization.quiz.questions[@quiz_realization.quiz_realization_answers.count]&.id
+  def next_question_id
+    @next_question_id ||= @quiz_realization.quiz.questions[@quiz_realization.quiz_realization_answers.count]&.id
   end
 
   def set_quiz_realization
