@@ -13,4 +13,13 @@ class QuizRealization < ApplicationRecord
   belongs_to :user
   belongs_to :quiz
   has_many :quiz_realization_answers, dependent: :destroy
+
+  has_many :questions, through: :quiz
+
+  def score
+    correct_answers_count = quiz_realization_answers.count(&:correct?)
+    questions_total_count = questions.count
+
+    (correct_answers_count * 10) / questions_total_count
+  end
 end

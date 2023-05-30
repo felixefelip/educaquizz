@@ -19,15 +19,15 @@
   <br>
   <h2><%= quiz_realization_answer.question.description %></h2>
 
-  <%= link_to_respond_question(text: "A", quiz_realization_answer:) %>
+  <%= link_to_respond_question(text: "A", quiz_realization_answer:, answer: 1) %>
   <%= quiz_realization_answer.question.alternative1 %><br>
 
-  <%= link_to_respond_question(text: "B", quiz_realization_answer:) %>
+  <%= link_to_respond_question(text: "B", quiz_realization_answer:, answer: 2) %>
   <%= quiz_realization_answer.question.alternative2 %><br>
 
-  <%= link_to_respond_question(text: "C", quiz_realization_answer:) %>
+  <%= link_to_respond_question(text: "C", quiz_realization_answer:, answer: 3) %>
   <%= quiz_realization_answer.question.alternative3 %><br>
 
-  <%= link_to_respond_question(text: "D", quiz_realization_answer:) %>
+  <%= link_to_respond_question(text: "D", quiz_realization_answer:, answer: 4) %>
   <%= quiz_realization_answer.question.alternative4 %><br>
 <% end %>

@@ -1,4 +1,18 @@
 <% @quiz_realization.quiz.questions.each.with_index do |question, index| %>
   <h2><%= question.description %></h2>
 
+  <%= "A" %>
+  <%= question.alternative1 %><br>
+
+  <%= "B" %>
+  <%= question.alternative2 %><br>
+
+  <%= "C" %>
+  <%= question.alternative3 %><br>
+
+  <%= "D" %>
+  <%= question.alternative4 %><br>
 <% end %>
+
+<br>
+<b>Pontuação final:</b> <%= @quiz_realization.score %>

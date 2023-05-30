@@ -9,7 +9,7 @@ class QuizRealizationAnswersController < ApplicationController
 
   def create
     @quiz_realization_answer =
-      @quiz_realization.quiz_realization_answers.create!(answer: @answer, question: @question)
+      @quiz_realization.quiz_realization_answers.create!(answer: params[:answer], question: @question)
 
     if next_question_id.nil?
       redirect_to quiz_realization_url(id: @quiz_realization), notice: "Questão respondida com sucesso. Quiz finalizado!"
