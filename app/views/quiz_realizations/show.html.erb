@@ -1,17 +1,35 @@
 <% @quiz_realization.quiz.questions.each.with_index do |question, index| %>
-  <h2><%= question.description %></h2>
+  <% @quiz_realization_answer = @quiz_realization.realization_answer_by_question(question) %>
+
+  <h2><%= question.description %> (<%= @quiz_realization.realization_answer_by_question(question).correct? ? "Acertou" : "Errou" %>)</h2>
 
   <%= "A" %>
-  <%= question.alternative1 %><br>
+  <%= question.alternative1 %>
+  <%= correct_answer_hit_tag(question, @quiz_realization_answer, 1) %>
+  <%= correct_answer_not_hit_tag(question, @quiz_realization_answer, 1) %>
+  <%= your_wrong_answer_tag(question, @quiz_realization_answer, 1) %>
+  <br>
 
   <%= "B" %>
-  <%= question.alternative2 %><br>
+  <%= question.alternative2 %>
+  <%= correct_answer_hit_tag(question, @quiz_realization_answer, 2) %>
+  <%= correct_answer_not_hit_tag(question, @quiz_realization_answer, 2) %>
+  <%= your_wrong_answer_tag(question, @quiz_realization_answer, 2) %>
+  <br>
 
   <%= "C" %>
-  <%= question.alternative3 %><br>
+  <%= question.alternative3 %>
+  <%= correct_answer_hit_tag(question, @quiz_realization_answer, 3) %>
+  <%= correct_answer_not_hit_tag(question, @quiz_realization_answer, 3) %>
+  <%= your_wrong_answer_tag(question, @quiz_realization_answer, 3) %>
+  <br>
 
   <%= "D" %>
-  <%= question.alternative4 %><br>
+  <%= question.alternative4 %>
+  <%= correct_answer_hit_tag(question, @quiz_realization_answer, 4) %>
+  <%= correct_answer_not_hit_tag(question, @quiz_realization_answer, 4) %>
+  <%= your_wrong_answer_tag(question, @quiz_realization_answer, 4) %>
+  <br>
 <% end %>
 
 <br>

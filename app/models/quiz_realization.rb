@@ -26,4 +26,8 @@ class QuizRealization < ApplicationRecord
   def next_question
     quiz.questions[quiz_realization_answers.count]
   end
+
+  def realization_answer_by_question(question)
+    quiz_realization_answers.find_by(question:)
+  end
 end

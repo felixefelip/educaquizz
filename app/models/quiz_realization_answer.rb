@@ -21,4 +21,8 @@ class QuizRealizationAnswer < ApplicationRecord
   def correct?
     answer == question.correct_answer
   end
+
+  def wrong?
+    !correct?
+  end
 end
