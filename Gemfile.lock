@@ -131,6 +131,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    kind (5.10.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -277,6 +278,11 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    u-attributes (2.8.0)
+      kind (>= 4.0, < 6.0)
+    u-case (4.5.2)
+      kind (>= 5.6, < 6.0)
+      u-attributes (>= 2.7, < 3.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -327,6 +333,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  u-case (~> 4.5.1)
   web-console
   webdrivers
 
