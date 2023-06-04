@@ -11,18 +11,14 @@ class QuizRealizationAnswersController < ApplicationController
     @quiz_realization_answer =
       @quiz_realization.quiz_realization_answers.create!(answer: params[:answer], question: @question)
 
-    if next_question_id.nil?
+    if @quiz_realization.next_question.nil?
       redirect_to quiz_realization_url(id: @quiz_realization), notice: "Questão respondida com sucesso. Quiz finalizado!"
     else
       redirect_to new_question_quiz_realization_quiz_realization_answer_url(
-        question_id: next_question_id,
+        question_id: @quiz_realization.next_question.id,
         quiz_realization_id: @quiz_realization.id,
       ), notice: "Questão respondida com sucesso."
     end
-  end
-
-  def next_question_id
-    @next_question_id ||= @quiz_realization.quiz.questions[@quiz_realization.quiz_realization_answers.count]&.id
   end
 
   def set_quiz_realization

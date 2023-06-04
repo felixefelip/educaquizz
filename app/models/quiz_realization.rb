@@ -22,4 +22,8 @@ class QuizRealization < ApplicationRecord
 
     (correct_answers_count * 10) / questions_total_count
   end
+
+  def next_question
+    quiz.questions[quiz_realization_answers.count]
+  end
 end
