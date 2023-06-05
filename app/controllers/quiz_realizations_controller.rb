@@ -1,14 +1,14 @@
 class QuizRealizationsController < ApplicationController
   before_action :set_quiz_realization, only: :show
-  before_action :set_quiz, only: :create
+  before_action :set_teacher_quiz_realization, only: :create
 
   def show; end
 
   def create
-    @quiz_realization = current_user.quiz_realizations.create!(quiz: @quiz)
+    @quiz_realization = current_user.quiz_realizations.create!(teacher_quiz_realization: @teacher_quiz_realization)
 
     redirect_to new_question_quiz_realization_quiz_realization_answer_url(
-                  question_id: @quiz.questions.first.id,
+                  question_id: @quiz_realization.quiz.questions.first.id,
                   quiz_realization_id: @quiz_realization.id,
                 ), notice: "Quiz iniciado com sucesso."
   end
@@ -17,7 +17,7 @@ class QuizRealizationsController < ApplicationController
     @quiz_realization = current_user.quiz_realizations.find(params[:id])
   end
 
-  def set_quiz
-    @quiz = Quiz.find(params[:quiz_id])
+  def set_teacher_quiz_realization
+    @teacher_quiz_realization = TeacherQuizRealization.find(params[:teacher_quiz_realization_id])
   end
 end

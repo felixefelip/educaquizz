@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   resources :quizzes do
     resources :questions
+    resources :teacher_quiz_realizations, only: :create
+  end
 
+  resources :teacher_quiz_realizations, only: %i[index show] do
     resources :quiz_realizations, only: :create
   end
 

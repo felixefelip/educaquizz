@@ -13,7 +13,7 @@ module QuizRealizationsHelper
     "Resposta correta"
   end
 
-  def your_wrong_answer_tag(question, quiz_realization_answer, alternative_number)
+  def your_wrong_answer_tag(_question, quiz_realization_answer, alternative_number)
     return unless quiz_realization_answer.wrong? &&
       alternative_number == quiz_realization_answer.answer
 

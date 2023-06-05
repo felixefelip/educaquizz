@@ -3,7 +3,12 @@
 <%= render @quiz %>
 
 <div>
-  <%= link_to "Iniciar quiz", quiz_quiz_realizations_path(@quiz), data: { "turbo-method": :post } %> |
+  <%= link_to "Disponibilizar quiz", quiz_teacher_quiz_realizations_path(quiz_id: @quiz.id), data: { "turbo-method": :post } %> |
+
+  <% if (teacher_quiz_realization = current_user.teacher_quiz_realizations.find_by(quiz: @quiz)) %>
+    <%= link_to "Iniciar quiz", teacher_quiz_realization_quiz_realizations_path(teacher_quiz_realization_id: teacher_quiz_realization.id), data: { "turbo-method": :post } %> |
+  <% end %>
+
   <%= link_to "Back to quizzes", quizzes_path %>
 </div>
 

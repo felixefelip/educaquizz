@@ -2,18 +2,20 @@
 #
 # Table name: quiz_realizations
 #
-#  id          :bigint           not null, primary key
-#  finished_at :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  quiz_id     :bigint           not null
-#  user_id     :bigint           not null
+#  id                          :bigint           not null, primary key
+#  finished_at                 :datetime
+#  created_at                  :datetime         not null
+#  updated_at                  :datetime         not null
+#  teacher_quiz_realization_id :bigint           not null
+#  user_id                     :bigint           not null
 #
 class QuizRealization < ApplicationRecord
   belongs_to :user
-  belongs_to :quiz
-  has_many :quiz_realization_answers, dependent: :destroy
+  belongs_to :teacher_quiz_realization
 
+  has_one :quiz, through: :teacher_quiz_realization
+
+  has_many :quiz_realization_answers, dependent: :destroy
   has_many :questions, through: :quiz
 
   def score

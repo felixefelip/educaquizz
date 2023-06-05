@@ -18,4 +18,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :quiz_realizations, dependent: :destroy
+  has_many :teacher_quiz_realizations, inverse_of: :teacher, dependent: :destroy
 end
