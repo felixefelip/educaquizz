@@ -11,7 +11,7 @@
 #
 class QuizRealizationAnswer < ApplicationRecord
   belongs_to :question
-  belongs_to :quiz_realization
+  belongs_to :quiz_realization, class_name: "QuizRealization::Record"
   has_one :quiz, through: :quiz_realization
   has_many :questions, through: :quiz
 

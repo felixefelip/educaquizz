@@ -17,6 +17,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :quiz_realizations, dependent: :destroy
+  has_many :quiz_realizations, dependent: :destroy, class_name: "QuizRealization::Record"
   has_many :teacher_quiz_realizations, inverse_of: :teacher, dependent: :destroy
 end

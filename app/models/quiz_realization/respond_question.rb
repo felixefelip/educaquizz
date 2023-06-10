@@ -1,4 +1,4 @@
-class QuizRealization
+module QuizRealization
   class RespondQuestion < Micro::Case
     attributes :answer, :question, :quiz_realization, :quiz_realization_answer
 
