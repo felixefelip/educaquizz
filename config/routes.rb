@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   resources :questions, only: :show do
     resources :quiz_realizations, only: [] do
-      resources :quiz_realization_answers, only: %i[new create]
+      resources :quiz_realization_answers, only: :new, controller: "quiz_realization_answers/new"
+      resources :quiz_realization_answers, only: :create, controller: "quiz_realization_answers/respond_question"
     end
   end
 end
