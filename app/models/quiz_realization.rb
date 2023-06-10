@@ -29,7 +29,7 @@ class QuizRealization < ApplicationRecord
     quiz.questions[quiz_realization_answers.count]
   end
 
-  def realization_answer_by_question(question)
+  def find_realization_answer_by_question(question)
     quiz_realization_answers.find_by(question:)
   end
 end
