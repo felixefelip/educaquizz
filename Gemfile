@@ -49,14 +49,15 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "devise"
-gem "rails-i18n"
 gem 'devise-i18n'
+gem "rails-i18n"
 
 gem "u-case", "~> 4.5.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "factory_bot_rails"
   gem "pry-rails"
   gem "rspec-rails", "~> 6.0.0"
 end
@@ -77,10 +78,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "erb_lint"
-  gem "rubocop", require: false
-  gem "rubocop-performance", require: false
-  gem "rubocop-rails", require: false
-  gem "rubocop-rspec", require: false
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
   gem "selenium-webdriver"
   gem "shoulda-matchers", "~> 5.0"
   gem "webdrivers"
