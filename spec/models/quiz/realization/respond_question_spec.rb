@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe QuizRealization::RespondQuestion do
+RSpec.describe Quiz::Realization::RespondQuestion do
   describe "#call", :aggregate_failures do
     context "when there are more questions to respond" do
       it "retuns type there_are_more_questions" do
@@ -12,7 +12,7 @@ RSpec.describe QuizRealization::RespondQuestion do
 
         result = nil
         expect { result = described_class.call(answer: 2, question: question1, quiz_realization:) }
-          .to change(QuizRealizationAnswer, :count).by(1)
+          .to change(Quiz::RealizationAnswer::Record, :count).by(1)
 
         expect(result).to be_success
         expect(result.type).to eq(:there_are_more_questions)
@@ -33,7 +33,7 @@ RSpec.describe QuizRealization::RespondQuestion do
 
         result2 = nil
         expect { result2 = described_class.call(answer: 2, question: question2, quiz_realization:) }
-          .to change(QuizRealizationAnswer, :count).by(1)
+          .to change(Quiz::RealizationAnswer::Record, :count).by(1)
 
         expect(result2).to be_success
         expect(result2.type).to eq(:last_question_answered)

@@ -9,17 +9,21 @@
 #  teacher_quiz_realization_id :bigint           not null
 #  user_id                     :bigint           not null
 #
-module QuizRealization
+module Quiz::Realization
   class Record < ApplicationRecord
     self.table_name = "quiz_realizations"
 
     belongs_to :user
-    belongs_to :teacher_quiz_realization
+    belongs_to :teacher_quiz_realization, class_name: "::Quiz::TeacherQuizRealization::Record"
 
     has_one :quiz, through: :teacher_quiz_realization
 
-    has_many :quiz_realization_answers, dependent: :destroy, foreign_key: :quiz_realization_id, inverse_of: :quiz_realization
-    has_many :questions, through: :quiz, foreign_key: :quiz_realization_id
+    has_many :quiz_realization_answers, dependent: :destroy,
+                                        foreign_key: :quiz_realization_id,
+                                        inverse_of: :quiz_realization,
+                                        class_name: "::Quiz::RealizationAnswer::Record"
+
+    has_many :questions, through: :quiz
 
     def score
       correct_answers_count = quiz_realization_answers.count(&:correct?)

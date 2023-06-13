@@ -1,6 +1,6 @@
 # This will guess the User class
 FactoryBot.define do
-  factory :question, class: "Question" do
+  factory :question, class: "Quiz::Question::Record" do
     description { "Quando foi descorberto o Brasil?" }
     alternative1 { "1520" }
     alternative2 { "Nunca" }
