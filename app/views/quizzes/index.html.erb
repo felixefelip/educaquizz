@@ -2,9 +2,9 @@
 
 <div id="quizzes">
   <% @quizzes.each do |quiz| %>
-    <%= render quiz %>
+    <%= render "quiz", quiz: %>
     <p>
-      <%= link_to "Show this quiz", quiz %>
+      <%= link_to "Show this quiz", quiz_path(quiz) %>
     </p>
   <% end %>
 </div>

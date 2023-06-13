@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @quiz %>
+<%= render "quiz", quiz: @quiz %>
 
 <div>
   <%= link_to "Disponibilizar quiz", quiz_teacher_quiz_realizations_path(quiz_id: @quiz.id), data: { "turbo-method": :post } %> |
@@ -16,6 +16,6 @@
 
 <div id="questions">
   <% @quiz.questions.each do |question| %>
-    <%= render question %>
+    <%= render "questions/question", question: %>
   <% end %>
 </div>
