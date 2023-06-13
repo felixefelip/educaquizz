@@ -4,7 +4,7 @@ module QuizRealizationAnswers
     before_action :set_quiz_realization, only: :create
 
     def create
-      ::QuizRealization::RespondQuestion
+      ::Quiz::Realization::RespondQuestion
         .call(answer: params[:answer], question: @question, quiz_realization: @quiz_realization)
         .on_success(:last_question_answered) { redirect_last_question_answered }
         .on_success(:there_are_more_questions) { redirect_there_are_more_questions }
@@ -29,7 +29,7 @@ module QuizRealizationAnswers
     end
 
     def set_question
-      @question = Question.find(params[:question_id])
+      @question = ::Quiz::Question::Record.find(params[:question_id])
     end
   end
 end

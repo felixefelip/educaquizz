@@ -18,6 +18,6 @@ class QuizRealizationsController < ApplicationController
   end
 
   def set_teacher_quiz_realization
-    @teacher_quiz_realization = TeacherQuizRealization.find(params[:teacher_quiz_realization_id])
+    @teacher_quiz_realization = ::Quiz::TeacherQuizRealization::Record.find(params[:teacher_quiz_realization_id])
   end
 end

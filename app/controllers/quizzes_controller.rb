@@ -2,7 +2,7 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[show]
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = ::Quiz::Record.all
   end
 
   def show; end
@@ -10,6 +10,6 @@ class QuizzesController < ApplicationController
   private
 
   def set_quiz
-    @quiz = Quiz.find(params[:id])
+    @quiz = ::Quiz::Record.find(params[:id])
   end
 end

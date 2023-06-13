@@ -15,7 +15,7 @@ module QuizRealizationAnswers
     end
 
     def set_question
-      @question = Question.find(params[:question_id])
+      @question = ::Quiz::Question::Record.find(params[:question_id])
     end
   end
 end
