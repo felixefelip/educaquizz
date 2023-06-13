@@ -13,7 +13,7 @@ module Quiz::Realization
   class Record < ApplicationRecord
     self.table_name = "quiz_realizations"
 
-    belongs_to :user
+    belongs_to :user, class_name: "::User::Record"
     belongs_to :teacher_quiz_realization, class_name: "::Quiz::TeacherQuizRealization::Record"
 
     has_one :quiz, through: :teacher_quiz_realization

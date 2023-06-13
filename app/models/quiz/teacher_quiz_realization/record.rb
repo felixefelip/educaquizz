@@ -15,7 +15,7 @@ module Quiz::TeacherQuizRealization
 
     belongs_to :teacher, foreign_key: :user_id,
                          inverse_of: :teacher_quiz_realizations,
-                         class_name: "::User"
+                         class_name: "::User::Record"
 
     belongs_to :quiz, class_name: "::Quiz::Record"
 
