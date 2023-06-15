@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :quiz_availabilities, only: %i[index show] do
+    resources :finish, only: :create, controller: "quiz_availabilities/finish"
     resources :quiz_realizations, only: :create
   end
 

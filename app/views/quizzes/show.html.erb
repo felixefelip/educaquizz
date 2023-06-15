@@ -8,6 +8,9 @@
   <% if (quiz_availability = current_user.quiz_availabilities.unfinished.find_by(quiz: @quiz)) %>
     <%= link_to "Iniciar quiz", quiz_availability_quiz_realizations_path(quiz_availability_id: quiz_availability.id),
                 data: { "turbo-method": :post } %> |
+
+    <%= link_to "Finalizar disponibilização", quiz_availability_finish_index_path(quiz_availability_id: quiz_availability.id),
+      data: { "turbo-method": :post } %> |
   <% end %>
 
   <%= link_to "Visualizar quizzes", quiz_quiz_availabilities_path(quiz_id: @quiz.id) %> |
