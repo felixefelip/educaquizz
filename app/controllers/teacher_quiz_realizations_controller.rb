@@ -4,7 +4,7 @@ class TeacherQuizRealizationsController < ApplicationController
   # def show; end
 
   def create
-    @teacher_quiz_realization = current_user.teacher_quiz_realizations.create!(quiz: @quiz)
+    @quiz_availability = current_user.quiz_availabilities.create!(quiz: @quiz)
 
     redirect_to quiz_url(@quiz), notice: "Quiz iniciado com sucesso."
   end

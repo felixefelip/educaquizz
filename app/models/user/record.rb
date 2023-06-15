@@ -25,9 +25,9 @@ module User
                                  foreign_key: :user_id,
                                  class_name: "::Quiz::Realization::Record"
 
-    has_many :teacher_quiz_realizations, dependent: :destroy,
+    has_many :quiz_availabilities, dependent: :destroy,
                                          inverse_of: :teacher,
                                          foreign_key: :user_id,
-                                         class_name: "::Quiz::TeacherQuizRealization::Record"
+                                         class_name: "::Quiz::Availability::Record"
   end
 end

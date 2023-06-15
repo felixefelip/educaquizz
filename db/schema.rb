@@ -28,6 +28,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_005305) do
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
+  create_table "quiz_availabilities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "quiz_id", null: false
+    t.datetime "finished_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_availabilities_on_quiz_id"
+    t.index ["user_id"], name: "index_quiz_availabilities_on_user_id"
+  end
+
   create_table "quiz_realization_answers", force: :cascade do |t|
     t.bigint "question_id", null: false
     t.bigint "quiz_realization_id", null: false
@@ -38,23 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_005305) do
     t.index ["quiz_realization_id"], name: "index_quiz_realization_answers_on_quiz_realization_id"
   end
 
-  create_table "quiz_realization_teachers", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "quiz_id", null: false
-    t.datetime "finished_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quiz_id"], name: "index_quiz_realization_teachers_on_quiz_id"
-    t.index ["user_id"], name: "index_quiz_realization_teachers_on_user_id"
-  end
-
   create_table "quiz_realizations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.datetime "finished_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "teacher_quiz_realization_id", null: false
-    t.index ["teacher_quiz_realization_id"], name: "index_quiz_realizations_on_teacher_quiz_realization_id"
+    t.bigint "quiz_availability_id", null: false
+    t.index ["quiz_availability_id"], name: "index_quiz_realizations_on_quiz_availability_id"
     t.index ["user_id"], name: "index_quiz_realizations_on_user_id"
   end
 
@@ -62,22 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_005305) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "quizzs", force: :cascade do |t|
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "teacher_quiz_realizations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "quiz_id", null: false
-    t.datetime "finished_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quiz_id"], name: "index_teacher_quiz_realizations_on_quiz_id"
-    t.index ["user_id"], name: "index_teacher_quiz_realizations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,12 +77,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_005305) do
   end
 
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_availabilities", "quizzes"
+  add_foreign_key "quiz_availabilities", "users"
   add_foreign_key "quiz_realization_answers", "questions"
   add_foreign_key "quiz_realization_answers", "quiz_realizations"
-  add_foreign_key "quiz_realization_teachers", "quizzes"
-  add_foreign_key "quiz_realization_teachers", "users"
-  add_foreign_key "quiz_realizations", "teacher_quiz_realizations"
+  add_foreign_key "quiz_realizations", "quiz_availabilities"
   add_foreign_key "quiz_realizations", "users"
-  add_foreign_key "teacher_quiz_realizations", "quizzes"
-  add_foreign_key "teacher_quiz_realizations", "users"
 end

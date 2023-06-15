@@ -7,8 +7,8 @@ RSpec.describe Quiz::Realization::RespondQuestion do
         quiz = create(:quiz)
         question1 = create(:question, quiz:)
         _question2 = create(:question, quiz:)
-        teacher_quiz_realization = create(:teacher_quiz_realization, quiz:)
-        quiz_realization = create(:quiz_realization, teacher_quiz_realization:)
+        quiz_availability = create(:quiz_availability, quiz:)
+        quiz_realization = create(:quiz_realization, quiz_availability:)
 
         result = nil
         expect { result = described_class.call(answer: 2, question: question1, quiz_realization:) }
@@ -24,8 +24,8 @@ RSpec.describe Quiz::Realization::RespondQuestion do
         quiz = create(:quiz)
         question1 = create(:question, quiz:)
         question2 = create(:question, quiz:)
-        teacher_quiz_realization = create(:teacher_quiz_realization, quiz:)
-        quiz_realization = create(:quiz_realization, teacher_quiz_realization:)
+        quiz_availability = create(:quiz_availability, quiz:)
+        quiz_realization = create(:quiz_realization, quiz_availability:)
 
         result1 = described_class.call(answer: 2, question: question1, quiz_realization:)
         expect(result1).to be_success

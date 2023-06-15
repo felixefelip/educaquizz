@@ -2,21 +2,21 @@
 #
 # Table name: quiz_realizations
 #
-#  id                          :bigint           not null, primary key
-#  finished_at                 :datetime
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  teacher_quiz_realization_id :bigint           not null
-#  user_id                     :bigint           not null
+#  id                   :bigint           not null, primary key
+#  finished_at          :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  quiz_availability_id :bigint           not null
+#  user_id              :bigint           not null
 #
 module Quiz::Realization
   class Record < ApplicationRecord
     self.table_name = "quiz_realizations"
 
     belongs_to :user, class_name: "::User::Record"
-    belongs_to :teacher_quiz_realization, class_name: "::Quiz::TeacherQuizRealization::Record"
+    belongs_to :quiz_availability, class_name: "::Quiz::Availability::Record"
 
-    has_one :quiz, through: :teacher_quiz_realization
+    has_one :quiz, through: :quiz_availability
 
     has_many :quiz_realization_answers, dependent: :destroy,
                                         foreign_key: :quiz_realization_id,
