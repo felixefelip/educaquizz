@@ -6,7 +6,7 @@
   <%= link_to "Disponibilizar quiz", quiz_quiz_availabilities_path(quiz_id: @quiz.id), data: { "turbo-method": :post } %> |
 
   <% if (quiz_availability = current_user.quiz_availabilities.find_by(quiz: @quiz)) %>
-    <%= link_to "Iniciar quiz", quiz_availabilities_quiz_realizations_path(quiz_availability_id: quiz_availability.id),
+    <%= link_to "Iniciar quiz", quiz_availability_quiz_realizations_path(quiz_availability_id: quiz_availability.id),
                 data: { "turbo-method": :post } %> |
   <% end %>
 

@@ -1,4 +1,4 @@
-class TeacherQuizRealizationsController < ApplicationController
+class QuizAvailabilitiesController < ApplicationController
   before_action :set_quiz, only: :create
 
   # def show; end
