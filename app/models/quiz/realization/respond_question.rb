@@ -7,6 +7,8 @@ module Quiz::Realization
 
       success_type = quiz_realization.next_question.nil? ? :last_question_answered : :there_are_more_questions
 
+      quiz_realization.update!(finished_at: Time.zone.now) if success_type == :last_question_answered
+
       Success success_type, result: { quiz_realization_answer: }
     end
   end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :quizzes do
     resources :questions
-    resources :quiz_availabilities, only: :create
+    resources :quiz_availabilities, only: %i[index create]
   end
 
   resources :quiz_availabilities, only: %i[index show] do

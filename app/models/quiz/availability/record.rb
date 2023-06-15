@@ -20,8 +20,17 @@ module Quiz::Availability
     belongs_to :quiz, class_name: "::Quiz::Record"
 
     has_many :quiz_realizations, dependent: :destroy,
-                                 inverse_of: :quiz_availabilities,
-                                 foreign_key: :quiz_availabilities,
-                                 class_name: "::Quiz::Availability::Record"
+                                 inverse_of: :quiz_availability,
+                                 foreign_key: :quiz_availability_id,
+                                 class_name: "::Quiz::Realization::Record"
+
+    scope :finished, -> { where.not(finished_at: nil) }
+    scope :unfinished, -> { where(finished_at: nil) }
+
+    def average_score
+      return 0 if quiz_realizations.finished.count.zero?
+
+      quiz_realizations.finished.sum(&:score) / quiz_realizations.finished.count
+    end
   end
 end

@@ -1,0 +1,6 @@
+<h1>Quizes Disponibilizados</h1>
+<% @quiz_availabilities.each do |quiz_availability| %>
+  <%= l quiz_availability.created_at %><br>
+  <%= quiz_availability.finished_at %><br>
+  <%= quiz_availability.average_score %><br>
+<% end %>

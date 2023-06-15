@@ -25,6 +25,8 @@ module Quiz::Realization
 
     has_many :questions, through: :quiz
 
+    scope :finished, -> { where.not(finished_at: nil) }
+
     def score
       correct_answers_count = quiz_realization_answers.count(&:correct?)
       questions_total_count = questions.count

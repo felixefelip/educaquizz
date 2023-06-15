@@ -1,7 +1,9 @@
 class QuizAvailabilitiesController < ApplicationController
-  before_action :set_quiz, only: :create
+  before_action :set_quiz, only: %i[index create]
 
-  # def show; end
+  def index
+    @quiz_availabilities = current_user.quiz_availabilities.where(quiz: @quiz)
+  end
 
   def create
     @quiz_availability = current_user.quiz_availabilities.create!(quiz: @quiz)
