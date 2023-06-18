@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Educaquizz</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Uma plataforma para teste de conhecimento">
+    <title>Nimbus - Teste o seu conhecimento!</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -30,10 +34,8 @@
     <div class="container">
       <br>
       <%= render_breadcrumbs :separator => ' / ' %>
-      <br>
-      <br>
       <%= yield %>
-    <div class="container">
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Gothic+A1:wght@800&family=Inter:wght@500;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-size: 100%;
+  background-color: #ffffff;
+}
+
+.cabecalho {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 27px;
+}
+
+.cabecalho-img {
+  height: 55px;
+}
+
+.cabecalho-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.cabecalho-menu-cad {
+  border: 2px solid #381a8c;
+  border-radius: 23px;
+  padding: 10px 18px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 17px;
+  color: #381a8c;
+}
+
+.cabecalho-menu-entrar {
+  border-radius: 23px;
+  padding: 10px 25px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 20px;
+  color: #ffffff;
+  background-color: #381a8c;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 60px;
+  background-color: #381a8c;
+  margin: 0 15%;
+  padding: 0 30px 70px 30px;
+}
+.conteudo-principal {
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+}
+.conteudo-principal-geral {
+  display: flex;
+  flex-direction: column;
+}
+
+.conteudo-principal-titulo {
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'Inter';
+  font-style: italic;
+  column-gap: -10px;
+  font-size: 390%;
+  line-height: 130%;
+  color: #ffffff;
+  margin-top: 40px;
+  margin-left: -235px;
+}
+
+.conteudo-principal-titulo-1 {
+  font-weight: 500;
+}
+
+.conteudo-principal-titulo-2 {
+  font-weight: 900;
+  margin-top: -20px;
+}
+
+.conteudo-principal-titulo-3 {
+  display: flex;
+  margin-top: -15px;
+}
+
+.conteudo-principal-titulo-3_1 {
+  font-weight: 400;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.conteudo-principal-titulo-3_2 {
+  font-weight: 900;
+  color: #381a8c;
+  background-color: #edb33f;
+  margin-top: 5px;
+  margin-left: 8px;
+  padding: 0px 20px 0px 10px;
+}
+.botao {
+  font-family: 'Alumni Sans';
+  font-style: italic;
+  font-weight: 900;
+  font-size: 25px;
+
+  margin-top: 7%;
+  margin-left: 50;
+
+  letter-spacing: 0.09em;
+  color: #381a8c;
+
+  background: #edb33f;
+  border-radius: 30px;
+  padding: 20px 50px;
+  cursor: pointer;
+}
+
+.conteudo-sec {
+  display: flex;
+  color: #ffffff;
+  flex-direction: column;
+  font-family: 'Gothic A1';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 12px;
+  line-height: 122.02%;
+  /* or 32px */
+  letter-spacing: 0.15em;
+  gap: 30pt;
+  line-height: 20pt;
+  margin: 30px -180px;
+
+  margin-left: 50px;
+  margin-top: 110px;
+}
+
+.ret1 {
+  background-color: #edb33f;
+  margin-right: 68%;
+  padding: 4px 0px 0px 8px;
+}
+
+.ret2 {
+  background-color: #edb33f;
+  margin-right: 54%;
+  padding: 4px 0px 0px 7px;
+}
+
+.ret3 {
+  background-color: #edb33f;
+  margin-right: 49%;
+  padding: 4px 0px 0px 4px;
+}

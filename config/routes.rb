@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  root "quizzes#index"
+  root "home#index"
+
+  resources :home, only: :index
 
   devise_for :users, class_name: "User::Record"
 
-  # devise_scope :user
+  devise_scope :user do
+    get "/users/sign_out" => "devise/sessions#destroy"
+  end
 
   resources :quizzes do
     resources :questions
