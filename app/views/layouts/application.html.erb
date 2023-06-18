@@ -21,7 +21,7 @@
   </head>
 
   <body>
-    <% if ["/users/sign_in", "/home", "/"].include?(request.fullpath) %>
+    <% if ["/users/sign_in", "/home", "/", "/users/sign_up"].include?(request.fullpath) %>
       <%= yield %>
     <% else %>
       <%= render 'shared/header' %>
