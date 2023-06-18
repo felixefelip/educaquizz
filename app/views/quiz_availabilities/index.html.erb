@@ -1,8 +1,26 @@
 <h1>Quiz <%= @quiz.description %> - Disponibilizados</h1>
-<% @quiz_availabilities.each do |quiz_availability| %>
-  <%= l(quiz_availability.created_at, format: :long) %><br>
-  <%= l(quiz_availability.finished_at, format: :long) if quiz_availability.finished_at.present? %><br>
-  <%= quiz_availability.quiz_realizations.finished.count %><br>
-  <%= quiz_availability.average_score %><br>
-  <%= link_to "Show", quiz_availability_path(quiz_availability) %><br>
-<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Data de disponibilição</th>
+      <th scope="col">Data de finalização</th>
+      <th scope="col">Total realizado</th>
+      <th scope="col">Nota média</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @quiz_availabilities.each.with_index do |quiz_availability, index| %>
+    <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= l(quiz_availability.created_at, format: :long) %></td>
+        <td><%= l(quiz_availability.finished_at, format: :long) if quiz_availability.finished_at.present? %></td>
+        <td><%= quiz_availability.quiz_realizations.finished.count %></td>
+        <td><%= quiz_availability.average_score %></td>
+        <td><%= link_to "Visualizar", quiz_availability_path(quiz_availability) %></td>
+    </tr>
+      <% end %>
+  </tbody>
+</table>
