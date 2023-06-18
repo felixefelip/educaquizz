@@ -1,19 +1,21 @@
 <h1>Quiz Disponibilizado</h1>
 
-<%= l(@quiz_availability.created_at, format: :long) %><br>
-<%= l(@quiz_availability.finished_at, format: :long) if @quiz_availability.finished_at.present? %><br>
-<%= @quiz_availability.quiz_realizations.finished.count %><br>
-<%= @quiz_availability.average_score %><br>
+Data de disponibilização: <%= l(@quiz_availability.created_at, format: :long) %><br>
+Data de finalização: <%= l(@quiz_availability.finished_at, format: :long) if @quiz_availability.finished_at.present? %><br>
+Total realizado <%= @quiz_availability.quiz_realizations.finished.count %><br>
+Nota média: <%= @quiz_availability.average_score %><br>
 
 <br>
 
 <h2>Realizados</h2>
 
 <% @quiz_availability.quiz_realizations.each do |quiz_realization| %>
-  <%= l(quiz_realization.created_at, format: :long) %><br>
-  <%= l(quiz_realization.finished_at, format: :long) if quiz_realization.finished_at.present? %><br>
-  <%= quiz_realization.user.email %><br>
-  <%= quiz_realization.score %><br><br>
+  Email do participante: <%= quiz_realization.user.email %><br>
+  Iniciado em: <%= l(quiz_realization.created_at, format: :long) %><br>
+  Data de finalização: <%= l(quiz_realization.finished_at, format: :long) if quiz_realization.finished_at.present? %><br>
+  Nota: <%= quiz_realization.score %><br><br>
 <% end %>
 
 <h1>Relatório bolado</h1>
+
+<br>

@@ -2,6 +2,8 @@ class QuizRealizationsController < ApplicationController
   before_action :set_quiz_realization, only: :show
   before_action :set_quiz_availability, only: :create
 
+  add_breadcrumb "Quizzes", "#"
+
   def show; end
 
   def create

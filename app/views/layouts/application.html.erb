@@ -26,7 +26,10 @@
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
+
     <div class="container">
+      <br>
+      <%= render_breadcrumbs :separator => ' / ' %>
       <br>
       <br>
       <%= yield %>
