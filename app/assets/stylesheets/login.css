@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@900&family=Gothic+A1:wght@800&family=Inter:wght@500;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body{
+  background-color: #381a8c;
+}
+
+.cabecalho {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 27px;
+  background-color: #381a8c;
+}
+
+.title {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3.2em;
+  line-height: 50px;
+  color: #381a8c;
+  margin-top: 30px;
+}
+
+.image_side{
+  max-width: 40%;
+}
