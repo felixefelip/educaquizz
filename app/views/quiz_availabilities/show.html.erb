@@ -1,8 +1,19 @@
 <h1>Quiz Disponibilizado</h1>
 
-<%= l @quiz_availability.created_at %><br>
-<%= @quiz_availability.finished_at %><br>
+<%= l(@quiz_availability.created_at, format: :long) %><br>
+<%= l(@quiz_availability.finished_at, format: :long) if @quiz_availability.finished_at.present? %><br>
 <%= @quiz_availability.quiz_realizations.finished.count %><br>
 <%= @quiz_availability.average_score %><br>
+
+<br>
+
+<h2>Realizados</h2>
+
+<% @quiz_availability.quiz_realizations.each do |quiz_realization| %>
+  <%= l(quiz_realization.created_at, format: :long) %><br>
+  <%= l(quiz_realization.finished_at, format: :long) if quiz_realization.finished_at.present? %><br>
+  <%= quiz_realization.user.email %><br>
+  <%= quiz_realization.score %><br><br>
+<% end %>
 
 <h1>Relatório bolado</h1>
