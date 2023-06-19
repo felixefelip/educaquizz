@@ -2,7 +2,7 @@
 
 <body style="background-color: #381a8c">
   <header class="cabecalho">
-    <%= image_tag "logo_branco.svg", alt: "Logo da Nimbus", class: "cabecalho-img" %>
+    <%= link_to(image_tag("logo_branco.svg", alt: "Logo da Nimbus", class: "cabecalho-img"), root_path) %>
   </header>
   <!-- Aqui vai o conteiner divisor de conteudo -->
   <div
@@ -27,9 +27,7 @@
             <div class="flex items-center justify-between">
               <%= f.label :password, class: "block text-lg font-medium leading-6 text-gray-900" %>
               <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-semibold text-indigo-600 hover:text-indigo-400 text-medium">Esqueceu a sua senha?</a>
+                <%= link_to "Esqueceu a sua senha?", new_password_path(resource_name), class: "font-semibold text-indigo-600 hover:text-indigo-400 text-medium" %>
               </div>
             </div>
             <div class="mt-2">
@@ -49,9 +47,7 @@
 
         <p class="mt-5 text-center text-sm text-gray-500">
           Ainda não possui uma conta?
-          <a
-            href="#"
-            class="font-bold leading-6 text-indigo-600 hover:text-indigo-400 text-medium">Clique aqui!</a>
+          <%= link_to "Clique aqui!", new_user_registration_path, class: "font-bold leading-6 text-indigo-600 hover:text-indigo-400 text-medium" %>
         </p>
       </div>
     </div>
