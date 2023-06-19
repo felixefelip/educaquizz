@@ -9,8 +9,8 @@
       </p>
     <% end %>
   </div>
-<% else current_user.teacher? %>
-    Iniciar quiz
+<% elsif current_user.teacher? %>
+  Iniciar quiz
   <%= form_with url: quiz_realizations_search_index_path, method: :post do |f| %>
     <%= f.text_field :quiz_availability_id %>
     <%= f.submit "Procurar", disable_with: 'Procurando' %>
