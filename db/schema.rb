@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_034144) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_045829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_034144) do
     t.string "alternative3"
     t.string "alternative4"
     t.integer "correct_answer", null: false
+    t.string "image"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 

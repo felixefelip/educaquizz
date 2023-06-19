@@ -10,6 +10,7 @@
 #  correct_answer :integer          not null
 #  description    :string
 #  difficulty     :integer
+#  image          :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  quiz_id        :bigint           not null
