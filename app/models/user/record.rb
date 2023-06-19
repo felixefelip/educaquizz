@@ -3,8 +3,11 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  access_type            :integer
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  last_name              :string
+#  name                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -26,8 +29,10 @@ module User
                                  class_name: "::Quiz::Realization::Record"
 
     has_many :quiz_availabilities, dependent: :destroy,
-                                         inverse_of: :teacher,
-                                         foreign_key: :user_id,
-                                         class_name: "::Quiz::Availability::Record"
+                                   inverse_of: :teacher,
+                                   foreign_key: :user_id,
+                                   class_name: "::Quiz::Availability::Record"
+
+    enum access_type: { teacher: 0, student: 1 }
   end
 end

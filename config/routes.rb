@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :home, only: :index
 
-  devise_for :users, class_name: "User::Record"
+  devise_for :users, class_name: "User::Record", controllers: { registrations: 'users/registrations'  }
 
   devise_scope :user do
     get "/users/sign_out" => "devise/sessions#destroy"
