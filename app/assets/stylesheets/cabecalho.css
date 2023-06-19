@@ -1,0 +1,40 @@
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 27px;
+  }
+
+  .cabecalho-img {
+    height: 55px;
+  }
+
+  .cabecalho-menu {
+    display: flex;
+    gap: 20px;
+  }
+
+  .cabecalho-menu-cad {
+    border: 2px solid #381a8c;
+    border-radius: 23px;
+    padding: 10px 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 17px;
+    color: #381a8c;
+  }
+
+  .cabecalho-menu-entrar {
+    border-radius: 23px;
+    padding: 10px 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 20px;
+    color: #ffffff;
+    background-color: #381a8c;
+  }

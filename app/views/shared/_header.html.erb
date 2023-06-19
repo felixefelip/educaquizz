@@ -1,5 +1,6 @@
+<%= stylesheet_link_tag 'cabecalho' %>
 <header class="cabecalho">
-  <%= image_tag "logo_roxa.svg", alt: "Logo da Nimbus", class: "cabecalho-img" %>
+  <%= link_to(image_tag("logo_roxa.svg", alt: "Logo da Nimbus", class: "cabecalho-img"), root_path) %>
   <nav class="cabecalho-menu">
     <% if user_signed_in? %>
       <%= link_to "Editar Perfil", edit_user_registration_path, class: "cabecalho-menu-cad" %>
