@@ -7,15 +7,17 @@
     <meta name="description" content="Uma plataforma para teste de conhecimento">
     <title>Nimbus - Teste o seu conhecimento!</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <% if request.fullpath != "/quizzes" %>
+      <script src="https://cdn.tailwindcss.com"></script>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= javascript_importmap_tags %>
+      <%= javascript_importmap_tags %>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <% end %>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
@@ -23,6 +25,21 @@
   <body>
     <% if ["/users/sign_in", "/home", "/", "/users/sign_up"].include?(request.fullpath) %>
       <%= yield %>
+    <% elsif request.fullpath == "/quizzes" %>
+      <%= render 'shared/header' %>
+
+      <p class="navbar-text float-right">
+
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+
+      <div class="container">
+        <%= yield %>
+      </div>
     <% else %>
       <%= render 'shared/header' %>
 

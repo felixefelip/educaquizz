@@ -3,7 +3,6 @@ module QuizRealizations
     before_action :set_quiz_availability, only: :create
 
     def create
-      binding.pry
       @quiz_realization = current_user.quiz_realizations.create!(quiz_availability: @quiz_availability)
 
       redirect_to new_question_quiz_realization_quiz_realization_answer_url(
