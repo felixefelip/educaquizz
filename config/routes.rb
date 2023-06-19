@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :quiz_availabilities, only: %i[index create]
   end
 
+  namespace :quiz_realizations do
+    resources :search, only: :create
+  end
+
   resources :quiz_availabilities, only: :show
 
   resources :quiz_availabilities, only: %i[index show] do

@@ -1,10 +1,18 @@
 <h1>Quizzes</h1>
 
-<div id="quizzes">
-  <% @quizzes.each do |quiz| %>
-    <%= render "quiz", quiz: %>
-    <p>
-      <%= link_to "Show this quiz", quiz_path(quiz) %>
-    </p>
+<% if current_user.teacher? %>
+  <div id="quizzes">
+    <% @quizzes.each do |quiz| %>
+      <%= render "quiz", quiz: %>
+      <p>
+        <%= link_to "Show this quiz", quiz_path(quiz) %>
+      </p>
+    <% end %>
+  </div>
+<% else current_user.teacher? %>
+    Iniciar quiz
+  <%= form_with url: quiz_realizations_search_index_path, method: :post do |f| %>
+    <%= f.text_field :quiz_availability_id %>
+    <%= f.submit "Procurar", disable_with: 'Procurando' %>
   <% end %>
-</div>
+<% end %>
