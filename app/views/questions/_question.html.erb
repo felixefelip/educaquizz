@@ -1,14 +1,12 @@
 <div id="<%= dom_id question %>">
   <p>
     <%# Description: %>
-    <strong>
-      <%= link_to question.description, question_path(question) %>
-    </strong>
+      <%= question.description %>
       <%# <strong></strong> %>
   </p>
 
   <p>
-    <strong>Difficulty:</strong>
+    Dificuldade:
     <%= question.difficulty %>
   </p>
 </div>

@@ -1,27 +1,48 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <p style="color: green"><%= notice %></p>
 
+<div style="margin: 0 auto">
 <%= render "quiz", quiz: @quiz %>
 
-<div>
-  <%= link_to "Disponibilizar quiz", quiz_quiz_availabilities_path(quiz_id: @quiz.id), data: { "turbo-method": :post } %> |
+<div id="questions">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to "Disponibilizar quiz", quiz_quiz_availabilities_path(quiz_id: @quiz.id), data: { "turbo-method": :post } %> |
 
-  <% if (quiz_availability = current_user.quiz_availabilities.unfinished.find_by(quiz: @quiz)) %>
-    <%= link_to "Iniciar quiz", quiz_availability_quiz_realizations_path(quiz_availability_id: quiz_availability.id),
-                data: { "turbo-method": :post } %> |
+          <% if (quiz_availability = current_user.quiz_availabilities.unfinished.find_by(quiz: @quiz)) %>
+            <%= link_to "Iniciar quiz", quiz_availability_quiz_realizations_path(quiz_availability_id: quiz_availability.id),
+                        data: { "turbo-method": :post } %> |
 
-    <%= link_to "Finalizar disponibilização", quiz_availability_finish_index_path(quiz_availability_id: quiz_availability.id),
-      data: { "turbo-method": :post } %> |
-  <% end %>
+            <%= link_to "Finalizar disponibilização", quiz_availability_finish_index_path(quiz_availability_id: quiz_availability.id),
+              data: { "turbo-method": :post } %> |
+          <% end %>
 
-  <%= link_to "Visualizar quizzes", quiz_quiz_availabilities_path(quiz_id: @quiz.id) %> |
+          <%= link_to "Visualizar quizzes", quiz_quiz_availabilities_path(quiz_id: @quiz.id) %> |
 
-  <%= link_to "Voltar", quizzes_path %>
+          <%= link_to "Voltar", quizzes_path %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<h1>Questions</h1>
+<br>
+<h2>Questões</h2>
 
 <div id="questions">
-  <% @quiz.questions.each do |question| %>
-    <%= render "questions/question", question: %>
-  <% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <% @quiz.questions.each do |question| %>
+        <div class="card">
+          <div class="card-body">
+            <%= render "questions/question", question: %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+      </div>
+  </div>
+</div>
 </div>
