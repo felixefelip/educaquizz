@@ -43,7 +43,7 @@ class QuizAvailabilitiesController < ApplicationController
   def create
     @quiz_availability = current_user.quiz_availabilities.create!(quiz: @quiz)
 
-    redirect_to quiz_url(@quiz), notice: "Quiz iniciado com sucesso."
+    redirect_to quiz_url(@quiz), notice: "Quiz iniciado com sucesso. Código: #{@quiz_availability.id}"
   end
 
   def set_quiz
