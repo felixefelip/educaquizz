@@ -14,7 +14,7 @@ module QuizRealizations
     private
 
     def set_quiz_availability
-      @quiz_availability = current_user.quiz_availabilities.find(params[:quiz_availability_id])
+      @quiz_availability = ::Quiz::Availability::Record.find(params[:quiz_availability_id])
     end
   end
 end

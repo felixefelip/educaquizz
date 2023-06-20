@@ -18,4 +18,37 @@ Nota média: <%= @quiz_availability.average_score %><br>
 
 <h1>Relatório bolado</h1>
 
+<script>
+window.onload = function() {
+
+const percentual_boa_nota = parseFloat("<%= @percentual_boa_nota %>")
+const percentual_nota_na_media = parseFloat("<%= @percentual_nota_na_media %>")
+const percentual_nota_ruim = parseFloat("<%= @percentual_nota_ruim %>")
+
+console.log("nota boa: ", percentual_boa_nota)
+
+var chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  title: {
+    text: "Média de notas"
+  },
+  data: [{
+    type: "pie",
+    startAngle: 240,
+    yValueFormatString: "##0.00\"%\"",
+    indexLabel: "{label} {y}",
+    dataPoints: [
+      {y: percentual_boa_nota, label: "Boa nota"},
+      {y: percentual_nota_na_media, label: "Nota Média"},
+      {y: percentual_nota_ruim, label: "Nota ruim"}
+    ]
+  }]
+});
+chart.render();
+
+}
+</script>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+
 <br>

@@ -15,6 +15,29 @@ class QuizAvailabilitiesController < ApplicationController
     add_breadcrumb @quiz_availability.quiz.description, quiz_path(@quiz_availability.quiz)
     add_breadcrumb "Disponibilizados", "#"
     add_breadcrumb "Exibir", "#"
+
+    @scores = @quiz_availability.quiz_realizations.map(&:score)
+    @boa_nota = @scores.select { |score| score >= 7 }
+    @nota_na_media = @scores.select { |score| score > 6 && score <= 7 }
+    @nota_ruim = @scores.select { |score| score < 6 }
+
+    @percentual_boa_nota = if @boa_nota.count.zero?
+        0
+      else
+        @scores.count * @boa_nota.count / 0.01
+      end
+
+    @percentual_nota_na_media = if @nota_na_media.count.zero?
+        0
+      else
+        @scores.count * @nota_na_media.count / 0.01
+      end
+
+    @percentual_nota_ruim = if @nota_ruim.count.zero?
+        0
+      else
+        @scores.count * @nota_ruim.count / 0.01
+      end
   end
 
   def create
