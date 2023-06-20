@@ -7,7 +7,7 @@
     <meta name="description" content="Uma plataforma para teste de conhecimento">
     <title>Nimbus - Teste o seu conhecimento!</title>
 
-    <% if request.fullpath != "/quizzes" %>
+    <% if request.fullpath != "/quizzes" && request.path.exclude?("/quiz_realizations/") %>
       <script src="https://cdn.tailwindcss.com"></script>
 
       <%= csrf_meta_tags %>
@@ -23,7 +23,7 @@
   </head>
 
   <body>
-    <% if ["/users/sign_in", "/home", "/", "/users/sign_up"].include?(request.fullpath) %>
+    <% if ["/users/sign_in", "/home", "/", "/users/sign_up"].include?(request.fullpath) || request.path.include?("/quiz_realizations/") %>
       <%= yield %>
     <% elsif request.fullpath == "/quizzes" %>
       <%= render 'shared/header' %>

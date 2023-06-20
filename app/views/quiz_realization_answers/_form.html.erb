@@ -1,3 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Uma plataforma para teste de conhecimento">
+        <link rel="stylesheet" type="text/css" href="quiz.css"/>
+        <title>Nimbus - Teste o seu conhecimento!</title>
+    </head>
+    <%= stylesheet_link_tag "quiz_realization" %>
+    <body>
+        <header class="cabecalho">
+            <nav>
+                <h1 class="materia">PORTUGUÊS</h1>
+            </nav>
+        </header>
+
+        <div class="content">
+        <div class="number-bar">
+            <span id="numberContainer"></span>
+        </div>
+        <div class="container">
+            <div class="question-bar">
+                <div id="question"></div>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" name="answer" class="radio" value="option1">
+                            <label>Opção 1</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio"   class="radio" name="answer" value="option2">
+                            <label>Opção 2</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" class="radio" name="answer" value="option3">
+                            <label>Opção 3</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" class="radio" name="answer" value="option4">
+                            <label>Opção 4</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" class="radio" name="answer" value="option5">
+                            <label>Opção 5</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="btn-container">
+                <div class="btn-container_1">
+                    <div class="btn1" id="previousButton" onclick="showPreviousPage()">&lt;</div>
+                    <div class="btn1" id="nextButton" onclick="showNextPage()">></div>
+                </div>
+                <div class="btn-container_2">
+                    <div class="btn2">Finalizar Quiz</div>
+                </div>
+
+            </div>
+    <script>
+        var questions = [
+            "Qual é a capital de Portugal?",
+            "Qual é o autor da obra 'Os Lusíadas'?",
+            "Quantas conjugações verbais existem na língua portuguesa?",
+            "Qual é o feminino de 'cavalo'?",
+            "Qual é o plural de 'país'?",
+            "Qual é o antônimo de 'alegre'?",
+            "Qual é a figura de linguagem presente na expressão 'A lua está sorrindo'?",
+            "O que é metonímia?",
+            "O que significa CPF?",
+            "Qual é a função sintática do termo 'objeto direto'?",
+            "Quem escreveu o livro 'Dom Casmurro'?",
+            "Qual é o processo de formação de palavras em que ocorre a junção de dois radicais?",
+            "Qual é o verbo auxiliar usado para formar o tempo futuro do subjuntivo em português?",
+            "Quantas sílabas tem a palavra 'paralelepípedo'?",
+            "Qual é o plural de 'cidadão'?",
+            "O que é uma oração coordenada?",
+            "Quem é o autor do livro 'Memórias Póstumas de Brás Cubas'?",
+            "Qual é o gênero da palavra 'pássaro'?",
+            "O que é uma anáfora?",
+            "Qual é a forma correta do comparativo de igualdade de 'inteligente'?"
+        ];
+
+        var options = [
+            ["Lisboa", "Porto", "Coimbra", "Braga", "Faro"],
+            ["Luís de Camões", "Fernando Pessoa", "Eça de Queirós", "José Saramago", "Miguel Torga"],
+            ["3", "4", "5", "6", "7"],
+            ["Égua", "Égua", "Égua", "Égua", "Égua"],
+            ["Países", "Paísses", "Paízis", "Paízes", "Paíse"],
+            ["Triste", "Triste", "Triste", "Triste", "Triste"],
+            ["Personificação", "Metáfora", "Metonímia", "Hipérbole", "Elipse"],
+            ["É uma figura de linguagem que substitui um termo por outro, havendo entre eles uma relação de proximidade ou associação", "É uma figura de linguagem que compara dois termos por meio de uma relação de semelhança", "É uma figura de linguagem que atribui características humanas a objetos inanimados", "É uma figura de linguagem que expressa uma ideia contrária ao sentido literal das palavras", "É uma figura de linguagem que omite um termo na construção da frase"],
+            ["Cadastro de Pessoa Física", "Certificado de Pessoa Física", "Cadastro Pessoal de Funcionários", "Certificado Pessoal de Fidelidade", "Cadastro de Pessoas Familiarizadas"],
+            ["Objeto Direto", "Adjunto Adverbial", "Predicado", "Complemento Nominal", "Sujeito"],
+            ["Machado de Assis", "José de Alencar", "Guimarães Rosa", "Érico Veríssimo", "Clarice Lispector"],
+            ["Derivação", "Composição", "Hibridismo", "Parassíntese", "Redução"],
+            ["Haver", "Ser", "Estar", "Ter", "Poder"],
+            ["8", "9", "10", "11", "12"],
+            ["Cidadãos", "Cidadãos", "Cidadãos", "Cidadãos", "Cidadãos"],
+            ["Duas orações que se ligam de forma coordenada, sem relação de dependência sintática", "Uma oração que expressa uma ação principal e outra que expressa uma ação secundária", "Uma oração que expressa uma ação que causa a outra", "Uma oração que expressa uma ação que depende da outra", "Uma oração que expressa uma condição para a outra"],
+            ["Machado de Assis", "José de Alencar", "Guimarães Rosa", "Érico Veríssimo", "Clarice Lispector"],
+            ["Masculino", "Feminino", "Ambos os gêneros", "Gênero neutro", "Gênero comum de dois"],
+            ["Repetição de uma palavra ou expressão no início de versos ou frases", "Repetição de uma palavra no final de versos ou frases", "Repetição de uma palavra ou expressão para enfatizar seu significado", "Repetição de uma palavra ou expressão para expressar uma contradição", "Repetição de uma palavra ou expressão para criar um efeito sonoro"],
+            ["Mais inteligente que", "Inteligentíssimo", "Inteligenteiro", "Mais inteligente do que", "Mais inteligentemente"]
+        ];
+
+        var currentQuestionIndex = 0;
+        var questionElement = document.getElementById("question");
+        var numberContainer = document.getElementById("numberContainer");
+        var numbersPerPage = 8;
+        var currentPage = 1;
+
+        function showQuestion() {
+            var currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion;
+
+            var currentOptions = options[currentQuestionIndex];
+            var optionElements = document.querySelectorAll(".option");
+            for (var i = 0; i < optionElements.length; i++) {
+                var inputElement = optionElements[i].querySelector("input");
+                var labelElement = optionElements[i].querySelector("label");
+                inputElement.value = currentOptions[i];
+                labelElement.textContent = currentOptions[i];
+            }
+        }
+
+        function updateNumbers() {
+            var totalPages = Math.ceil(questions.length / numbersPerPage);
+            var start = (currentPage - 1) * numbersPerPage;
+            var end = start + numbersPerPage;
+            if (currentPage === totalPages) {
+                end = questions.length;
+            }
+            var numbers = "";
+            for (var i = start; i < end; i++) {
+                numbers += "<span class='number' onclick='goToQuestion(" + i + ")'>" + (i + 1) + "</span>";
+            }
+            numberContainer.innerHTML = numbers;
+        }
+
+        function goToQuestion(index) {
+            currentQuestionIndex = index;
+            showQuestion();
+            updateNumbers();
+        }
+
+        function showNextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+                updateNumbers();
+            }
+        }
+
+        function showPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+                updateNumbers();
+            }
+        }
+
+        function showNextPage() {
+            var totalPages = Math.ceil(questions.length / numbersPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                showQuestion();
+                updateNumbers();
+            }
+        }
+
+        function showPreviousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showQuestion();
+                updateNumbers();
+            }
+        }
+
+        var nextButton = document.getElementById("nextButton");
+        nextButton.addEventListener("click", showNextQuestion);
+
+        var previousButton = document.getElementById("previousButton");
+        previousButton.addEventListener("click", showPreviousQuestion);
+
+        showQuestion();
+        updateNumbers();
+    </script>
+</div>
+</div>
+</body>
+</html>
+
+
 <%= form_with(model: quiz_realization_answer, url: question_quiz_realization_quiz_realization_answers_path) do |form| %>
   <% if quiz_realization_answer.errors.any? %>
     <div style="color: red">
