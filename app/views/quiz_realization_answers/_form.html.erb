@@ -1,64 +1,64 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Uma plataforma para teste de conhecimento">
-        <link rel="stylesheet" type="text/css" href="quiz.css"/>
-        <title>Nimbus - Teste o seu conhecimento!</title>
-    </head>
     <%= stylesheet_link_tag "quiz_realization" %>
     <body>
         <header class="cabecalho">
             <nav>
-                <h1 class="materia">PORTUGUÊS</h1>
+                <h1 class="materia"><%= quiz_realization_answer.quiz.description %></h1>
             </nav>
         </header>
 
         <div class="content">
         <div class="number-bar">
-            <span id="numberContainer"></span>
+            <span id="numberContainer">
+              <% quiz_realization_answer.questions.each.with_index(1) do |question, index| %>
+                <span class='number' onclick='goToQuestion(" + i + ")'><%= index %></span>
+              <% end %>
+            </span>
         </div>
         <div class="container">
+        <%= form_with(model: quiz_realization_answer,
+                      url: question_quiz_realization_quiz_realization_answers_url(
+                        question_id: quiz_realization_answer.question.id,
+                        quiz_realization_id: quiz_realization_answer.quiz_realization_id
+                      ), method: :post) do |f| %>
             <div class="question-bar">
-                <div id="question"></div>
+                <div id="question"><%= @quiz_realization_answer.question.description %></div>
                     <div class="options">
                         <div class="option">
-                            <input type="radio" name="answer" class="radio" value="option1">
-                            <label>Opção 1</label>
+                            <%= f.radio_button :answer, "1", class: "radio" %>
+                            <label><%= @quiz_realization_answer.question.alternative1 %></label>
                         </div>
                         <div class="option">
-                            <input type="radio"   class="radio" name="answer" value="option2">
-                            <label>Opção 2</label>
+                            <%= f.radio_button :answer, "2", class: "radio" %>
+                            <label><%= @quiz_realization_answer.question.alternative2 %></label>
                         </div>
-                        <div class="option">
-                            <input type="radio" class="radio" name="answer" value="option3">
-                            <label>Opção 3</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" class="radio" name="answer" value="option4">
-                            <label>Opção 4</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" class="radio" name="answer" value="option5">
-                            <label>Opção 5</label>
-                        </div>
+
+                        <% if @quiz_realization_answer.question.alternative3? %>
+                          <div class="option">
+                              <%= f.radio_button :answer, "3", class: "radio" %>
+                              <label><%= @quiz_realization_answer.question.alternative3 %></label>
+                          </div>
+                        <% end %>
+                        <% if @quiz_realization_answer.question.alternative4? %>
+                          <div class="option">
+                              <%= f.radio_button :answer, "4", class: "radio" %>
+                              <label><%= @quiz_realization_answer.question.alternative4 %></label>
+                          </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
             </div>
             <div class="btn-container">
                 <div class="btn-container_1">
-                    <div class="btn1" id="previousButton" onclick="showPreviousPage()">&lt;</div>
-                    <div class="btn1" id="nextButton" onclick="showNextPage()">></div>
+                    <button class="btn1" id="previousButton" onclick="showPreviousPage()">&lt;</button>
+                    <button class="btn1" id="nextButton" onclick="showNextPage()">></button>
                 </div>
                 <div class="btn-container_2">
-                    <div class="btn2">Finalizar Quiz</div>
+                    <button type="submit" class="btn2">Finalizar Quiz</button>
                 </div>
 
             </div>
-    <script>
+    <%# <script>
         var questions = [
             "Qual é a capital de Portugal?",
             "Qual é o autor da obra 'Os Lusíadas'?",
@@ -186,43 +186,9 @@
 
         showQuestion();
         updateNumbers();
-    </script>
+    </script> %>
 </div>
+<% end %>
 </div>
 </body>
 </html>
-
-
-<%= form_with(model: quiz_realization_answer, url: question_quiz_realization_quiz_realization_answers_path) do |form| %>
-  <% if quiz_realization_answer.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(quiz_realization_answer.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-      <ul>
-        <% quiz_realization_answer.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% quiz_realization_answer.questions.each.with_index(1) do |question, index| %>
-    <%= index %>
-  <% end %>
-
-  <br>
-  <br>
-  <h2><%= quiz_realization_answer.question.description %></h2>
-
-  <%= link_to_respond_question(text: "A", quiz_realization_answer:, answer: 1) %>
-  <%= quiz_realization_answer.question.alternative1 %><br>
-
-  <%= link_to_respond_question(text: "B", quiz_realization_answer:, answer: 2) %>
-  <%= quiz_realization_answer.question.alternative2 %><br>
-
-  <%= link_to_respond_question(text: "C", quiz_realization_answer:, answer: 3) %>
-  <%= quiz_realization_answer.question.alternative3 %><br>
-
-  <%= link_to_respond_question(text: "D", quiz_realization_answer:, answer: 4) %>
-  <%= quiz_realization_answer.question.alternative4 %><br>
-<% end %>

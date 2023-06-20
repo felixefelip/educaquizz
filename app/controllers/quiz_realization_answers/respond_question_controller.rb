@@ -5,7 +5,7 @@ module QuizRealizationAnswers
 
     def create
       ::Quiz::Realization::RespondQuestion
-        .call(answer: params[:answer], question: @question, quiz_realization: @quiz_realization)
+        .call(answer: params[:quiz_realization_answer_record][:answer], question: @question, quiz_realization: @quiz_realization)
         .on_success(:last_question_answered) { redirect_last_question_answered }
         .on_success(:there_are_more_questions) { redirect_there_are_more_questions }
     end
