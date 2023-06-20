@@ -18,7 +18,7 @@ class QuizAvailabilitiesController < ApplicationController
 
     @scores = @quiz_availability.quiz_realizations.map(&:score)
     @boa_nota = @scores.select { |score| score >= 7 }
-    @nota_na_media = @scores.select { |score| score > 6 && score <= 7 }
+    @nota_na_media = @scores.select { |score| score >= 6 && score <= 7 }
     @nota_ruim = @scores.select { |score| score < 6 }
 
     @percentual_boa_nota = if @boa_nota.count.zero?
