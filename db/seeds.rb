@@ -10,6 +10,24 @@ if (Quiz::Record.count.zero?)
   ApplicationRecord.transaction do
     quiz_historia = Quiz::Record.create!(description: "História")
 
+    Quiz::Question::Record.create!(description: "Qual o nome do presidente do Brasil que ficou conhecido como Jango",
+                                   difficulty: 3,
+                                   quiz_id: quiz_historia.id,
+                                   alternative1: "Jânio Quadros",
+                                   alternative2: "Jacinto Anjos",
+                                   alternative3: "Getúlio Vargas",
+                                   alternative4: "João Goulart",
+                                   correct_answer: 3)
+
+    Quiz::Question::Record.create!(description: "Em que ano foi descoberto o Brasil?",
+                                   difficulty: 2,
+                                   quiz_id: quiz_historia.id,
+                                   alternative1: 1891,
+                                   alternative2: 2010,
+                                   alternative3: 1520,
+                                   alternative4: 1500,
+                                   correct_answer: 4)
+
     Quiz::Question::Record.create!(description: "Nós vimos em nossas aulas, a diferença entre tempos cronológico e histórico. Nas frases abaixo, assinale corretamente com a letra (C) aquele que se refere ao cronológico e com a letra (H) aquele que se refere ao tempo histórico.",
                                    difficulty: 2,
                                    quiz_id: quiz_historia.id,
