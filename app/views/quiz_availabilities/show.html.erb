@@ -1,54 +1,74 @@
-<h1>Quiz Disponibilizado</h1>
 
-Data de disponibilização: <%= l(@quiz_availability.created_at, format: :long) %><br>
-Data de finalização: <%= l(@quiz_availability.finished_at, format: :long) if @quiz_availability.finished_at.present? %><br>
-Total realizado <%= @quiz_availability.quiz_realizations.finished.count %><br>
-Nota média: <%= @quiz_availability.average_score %><br>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <br>
+<div style="margin: 0 auto;">
+  <h1>Quiz Disponibilizado</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          Data de disponibilização: <%= l(@quiz_availability.created_at, format: :long) %><br>
+          Data de finalização: <%= l(@quiz_availability.finished_at, format: :long) if @quiz_availability.finished_at.present? %><br>
+          Total realizado <%= @quiz_availability.quiz_realizations.finished.count %><br>
+          Nota média: <%= @quiz_availability.average_score %><br>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h2>Realizados</h2>
+  <br>
 
-<% @quiz_availability.quiz_realizations.each do |quiz_realization| %>
-  Email do participante: <%= quiz_realization.user.email %><br>
-  Iniciado em: <%= l(quiz_realization.created_at, format: :long) %><br>
-  Data de finalização: <%= l(quiz_realization.finished_at, format: :long) if quiz_realization.finished_at.present? %><br>
-  Nota: <%= quiz_realization.score %><br><br>
-<% end %>
+  <h2>Realizados</h2>
 
-<h1>Relatório bolado</h1>
+  <div class="row">
+    <% @quiz_availability.quiz_realizations.each do |quiz_realization| %>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+              Email do participante: <%= quiz_realization.user.email %><br>
+              Iniciado em: <%= l(quiz_realization.created_at, format: :long) %><br>
+              Data de finalização: <%= l(quiz_realization.finished_at, format: :long) if quiz_realization.finished_at.present? %><br>
+              Nota: <%= quiz_realization.score %><br><br>
+          </div>
+        </div>
+        <br>
+        <br>
+      </div>
+    <% end %>
 
-<script>
-window.onload = function() {
+    <script>
+    window.onload = function() {
 
-const percentual_boa_nota = parseFloat("<%= @percentual_boa_nota %>")
-const percentual_nota_na_media = parseFloat("<%= @percentual_nota_na_media %>")
-const percentual_nota_ruim = parseFloat("<%= @percentual_nota_ruim %>")
+    const percentual_boa_nota = parseFloat("<%= @percentual_boa_nota %>")
+    const percentual_nota_na_media = parseFloat("<%= @percentual_nota_na_media %>")
+    const percentual_nota_ruim = parseFloat("<%= @percentual_nota_ruim %>")
 
-console.log("nota boa: ", percentual_boa_nota)
+    console.log("nota boa: ", percentual_boa_nota)
 
-var chart = new CanvasJS.Chart("chartContainer", {
-  animationEnabled: true,
-  title: {
-    text: "Média de notas"
-  },
-  data: [{
-    type: "pie",
-    startAngle: 240,
-    yValueFormatString: "##0.00\"%\"",
-    indexLabel: "{label} {y}",
-    dataPoints: [
-      {y: percentual_boa_nota, label: "Boa nota"},
-      {y: percentual_nota_na_media, label: "Nota Média"},
-      {y: percentual_nota_ruim, label: "Nota ruim"}
-    ]
-  }]
-});
-chart.render();
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title: {
+        text: "Média de notas"
+      },
+      data: [{
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: "##0.00\"%\"",
+        indexLabel: "{label} {y}",
+        dataPoints: [
+          {y: percentual_boa_nota, label: "Boa nota"},
+          {y: percentual_nota_na_media, label: "Nota Média"},
+          {y: percentual_nota_ruim, label: "Nota ruim"}
+        ]
+      }]
+    });
+    chart.render();
 
-}
-</script>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    }
+    </script>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 
-<br>
+    <br>
+</div>
+
