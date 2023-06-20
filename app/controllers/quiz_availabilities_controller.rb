@@ -24,19 +24,19 @@ class QuizAvailabilitiesController < ApplicationController
     @percentual_boa_nota = if @boa_nota.count.zero?
         0
       else
-        @scores.count * @boa_nota.count / 0.01
+        (100 * @boa_nota.count) / @scores.count
       end
 
     @percentual_nota_na_media = if @nota_na_media.count.zero?
         0
       else
-        @scores.count * @nota_na_media.count / 0.01
+        (100 * @nota_na_media.count) / @scores.count
       end
 
     @percentual_nota_ruim = if @nota_ruim.count.zero?
         0
       else
-        @scores.count * @nota_ruim.count / 0.01
+        (100 * @nota_ruim.count) / @scores.count
       end
   end
 
