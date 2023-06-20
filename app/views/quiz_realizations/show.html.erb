@@ -1,3 +1,14 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<%= render 'shared/header' %>
+
+<div class="container">
+
+<br>
+<h2>Pontuação final: <%= @quiz_realization.score %>/10 </h2>
+<br>
+
 <% @quiz_realization.quiz.questions.each.with_index do |question, index| %>
   <% @quiz_realization_answer = @quiz_realization.find_realization_answer_by_question(question) %>
 
@@ -30,7 +41,7 @@
   <%= correct_answer_not_hit_tag(question, @quiz_realization_answer, 4) %>
   <%= your_wrong_answer_tag(question, @quiz_realization_answer, 4) %>
   <br>
+  <br>
 <% end %>
 
-<br>
-<b>Pontuação final:</b> <%= @quiz_realization.score %>
+</div>
